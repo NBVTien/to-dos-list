@@ -1,24 +1,36 @@
-import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import './App.css';
 
-type Task = {
+type TaskInfo = {
   name: string;
-}
+};
 
 function App() {
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const {register, handleSubmit} = useForm<Task>();
+  const [tasks, setTasks] = useState<TaskInfo[]>([]);
+  const [task, setTask] = useState<TaskInfo>({name: ''});
 
-  function onSubmit(data: Task) {
-    setTasks([...tasks, data]);
+  function addNewTask() {
+    setTasks([...tasks, task]);
+  }
+  
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    addNewTask();
+    setTask({ name: '' }); 
   }
 
   return (
     <>
-      <h2>Add a task:</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input {...register('name')} />
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={task.name}
+          onChange={(event) => {
+            event.preventDefault();
+            setTask({...task, name: event.target.value})
+          }}
+          placeholder="Add a new task..."
+        />
         <button type="submit">Add</button>
       </form>
       <h2>Tasks:</h2>
