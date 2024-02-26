@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import Task from './components/Task.tsx';
 
 type TaskInfo = {
   name: string;
@@ -19,6 +20,11 @@ function App() {
     setTask({ name: '' }); 
   }
 
+  function handleDelete(index: number) {
+    const newTasks = [...tasks.slice(0, index), ...tasks.slice(index + 1)];
+    setTasks(newTasks);
+  }
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -34,11 +40,11 @@ function App() {
         <button type="submit">Add</button>
       </form>
       <h2>Tasks:</h2>
-      <ul>
+      <div>
         {tasks.map((task, index) => (
-          <li key={index}>{task.name}</li>
+          <Task name={task.name} onDelete={() => handleDelete(index)} />
         ))}
-      </ul>
+      </div>
     </>
   );  
 }
