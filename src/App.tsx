@@ -1,29 +1,34 @@
-import { useState } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import './App.css';
-import Task from './components/Task.tsx';
+import Task from './components/Task';
 
-type TaskInfo = {
+// Define the type for a task outside of the App component for reusability
+type TaskType = {
   name: string;
 };
 
-function App() {
-  const [tasks, setTasks] = useState<TaskInfo[]>([]);
-  const [task, setTask] = useState<TaskInfo>({name: ''});
+const App = () => {
+  const [tasks, setTasks] = useState<TaskType[]>([]);
+  const [task, setTask] = useState<TaskType>({ name: '' });
 
-  function addNewTask() {
+  const addNewTask = () => {
     setTasks([...tasks, task]);
-  }
-  
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  };
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     addNewTask();
-    setTask({ name: '' }); 
-  }
+    setTask({ name: '' });
+  };
 
-  function handleDelete(index: number) {
+  const handleDelete = (index: number) => {
     const newTasks = [...tasks.slice(0, index), ...tasks.slice(index + 1)];
     setTasks(newTasks);
-  }
+  };
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setTask({ ...task, name: event.target.value });
+  };
 
   return (
     <>
@@ -31,10 +36,7 @@ function App() {
         <input
           type="text"
           value={task.name}
-          onChange={(event) => {
-            event.preventDefault();
-            setTask({...task, name: event.target.value})
-          }}
+          onChange={handleInputChange}
           placeholder="Add a new task..."
         />
         <button type="submit">Add</button>
@@ -42,11 +44,11 @@ function App() {
       <h2>Tasks:</h2>
       <div>
         {tasks.map((task, index) => (
-          <Task name={task.name} onDelete={() => handleDelete(index)} />
+          <Task key={index} name={task.name} onDelete={() => handleDelete(index)} />
         ))}
       </div>
     </>
-  );  
-}
+  );
+};
 
-export default App
+export default App;
