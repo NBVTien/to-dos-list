@@ -2,7 +2,6 @@ import { useState, ChangeEvent, FormEvent } from 'react';
 import './App.css';
 import Task from './components/Task';
 
-// Define the type for a task outside of the App component for reusability
 type TaskType = {
   name: string;
 };
@@ -41,11 +40,14 @@ const App = () => {
         />
         <button type="submit">Add</button>
       </form>
-      <h2>Tasks:</h2>
       <div>
-        {tasks.map((task, index) => (
-          <Task key={index} name={task.name} onDelete={() => handleDelete(index)} />
-        ))}
+        {(tasks.length === 0) ? (
+          <p>No tasks yet.</p>
+        ) : (
+          tasks.map((task, index) => (
+            <Task name={task.name} onDelete={() => handleDelete(index)} />
+          ))
+        )}
       </div>
     </>
   );
