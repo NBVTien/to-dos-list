@@ -1,14 +1,11 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
+import { TaskType } from './shared/Types';
+import TaskList from './components/TaskList';
 import './App.css';
-import Task from './components/Task';
-
-type TaskType = {
-  name: string;
-};
 
 const App = () => {
-  const [tasks, setTasks] = useState<TaskType[]>([]);
   const [task, setTask] = useState<TaskType>({ name: '' });
+  const [tasks, setTasks] = useState<TaskType[]>([]);
 
   const addNewTask = () => {
     setTasks([...tasks, task]);
@@ -40,15 +37,10 @@ const App = () => {
         />
         <button type="submit">Add</button>
       </form>
-      <div>
-        {(tasks.length === 0) ? (
-          <p>No tasks yet.</p>
-        ) : (
-          tasks.map((task, index) => (
-            <Task name={task.name} onDelete={() => handleDelete(index)} />
-          ))
-        )}
-      </div>
+      <TaskList 
+        tasks={tasks} 
+        onDelete={handleDelete} 
+      />
     </>
   );
 };
