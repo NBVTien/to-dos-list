@@ -8,6 +8,7 @@ const App = () => {
   const [tasks, setTasks] = useState<TaskType[]>([]);
 
   const addNewTask = () => {
+    if (task.name === '') return;
     setTasks([...tasks, task]);
   };
 
@@ -27,21 +28,23 @@ const App = () => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={task.name}
-          onChange={handleInputChange}
-          placeholder="Add a new task..."
+    <div className='App'>
+      <div className='wrapper'>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={task.name}
+            onChange={handleInputChange}
+            placeholder="Add a new task..."
+          />
+          <button type="submit">Add</button>
+        </form>
+        <TaskList 
+          tasks={tasks} 
+          onDelete={handleDelete} 
         />
-        <button type="submit">Add</button>
-      </form>
-      <TaskList 
-        tasks={tasks} 
-        onDelete={handleDelete} 
-      />
-    </>
+      </div>
+    </div>
   );
 };
 
