@@ -1,7 +1,7 @@
 import Task from "./Task";
-import { TaskType } from "../shared/Types";
+import { TaskListProps } from "../shared/Types";
 
-const TaskList = ( {tasks, onDelete} : {tasks: TaskType[], onDelete: (index: number) => void}) => {
+const TaskList = ( {tasks, onDelete} : TaskListProps) => {
   return (
     <>
       {(tasks.length === 0) ? (

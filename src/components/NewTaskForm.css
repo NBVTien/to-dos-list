@@ -1,0 +1,29 @@
+.new-task-form {
+  display: flex;
+  flex-direction: row;
+
+  & > input {
+    padding: 10px;
+    margin: 10px;
+    width: 100%;
+
+    &::placeholder {
+      color: var(--text-color);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  & > button {
+    background-color: var(--accent-color);
+    color: var(--background-color);
+    width: fit-content;
+    padding: 0px 20px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}

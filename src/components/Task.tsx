@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import "./Task.css";
+import { TaskProps } from "../shared/Types";
 
-function Task( {key, name, onDelete} : {key: number, name: string, onDelete: () => void} ) {
+function Task( {key, name, onDelete} : TaskProps ) {
   return (
 		<div className="task">
 			<div>{name}</div>

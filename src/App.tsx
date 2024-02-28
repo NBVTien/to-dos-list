@@ -1,6 +1,7 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { TaskType } from './shared/Types';
 import TaskList from './components/TaskList';
+import NewTaskForm from './components/NewTaskForm';
 import './App.css';
 
 const App = () => {
@@ -28,17 +29,13 @@ const App = () => {
   };
 
   return (
-    <div className='App'>
+    <div className='app'>
       <div className='wrapper'>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={task.name}
-            onChange={handleInputChange}
-            placeholder="Add a new task..."
-          />
-          <button type="submit">Add</button>
-        </form>
+        <NewTaskForm 
+          onSubmit={handleSubmit} 
+          onChange={handleInputChange} 
+          task={task}
+        />
         <TaskList 
           tasks={tasks} 
           onDelete={handleDelete} 
