@@ -7,6 +7,10 @@ const NewTaskForm = ( { onNewTask } : NewTaskFormProps ) => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (task.name.trim() === '') {
+      setTask({ name: '' });
+      return;
+    }
     onNewTask(task);
     setTask({ name: '' });
   }

@@ -1,14 +1,18 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TaskType } from './shared/Types';
 import TaskList from './components/TaskList';
 import NewTaskForm from './components/NewTaskForm';
 import './App.css';
 
 const App = () => {
-  const [tasks, setTasks] = useState<TaskType[]>([]);
+  const stringtifyTasks: string | null = sessionStorage.getItem('tasks');
+  const storedTasks: TaskType[] = (stringtifyTasks !== null) ? JSON.parse(stringtifyTasks) : []; 
+  const [tasks, setTasks] = useState<TaskType[]>(storedTasks);
+  useEffect(() => {
+    sessionStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
 
   const addNewTask = (task: TaskType) => {
-    if (task.name === '') return;
     setTasks([...tasks, task]);
   };
 
