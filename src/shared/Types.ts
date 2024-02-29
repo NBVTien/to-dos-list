@@ -8,7 +8,7 @@ export interface TaskListProps {
 }
 
 export interface TaskProps {
-    key?: number;
+    key: number;
     name: string;
     onDelete: () => void;
 }
