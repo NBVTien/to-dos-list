@@ -1,22 +1,15 @@
-import { useState, ChangeEvent, FormEvent } from 'react';
+import { useState } from 'react';
 import { TaskType } from './shared/Types';
 import TaskList from './components/TaskList';
 import NewTaskForm from './components/NewTaskForm';
 import './App.css';
 
 const App = () => {
-  const [task, setTask] = useState<TaskType>({ name: '' });
   const [tasks, setTasks] = useState<TaskType[]>([]);
 
-  const addNewTask = () => {
+  const addNewTask = (task: TaskType) => {
     if (task.name === '') return;
     setTasks([...tasks, task]);
-  };
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    addNewTask();
-    setTask({ name: '' });
   };
 
   const handleDelete = (index: number) => {
@@ -24,17 +17,11 @@ const App = () => {
     setTasks(newTasks);
   };
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setTask({ ...task, name: event.target.value });
-  };
-
   return (
     <div className='app'>
       <div className='wrapper'>
         <NewTaskForm 
-          onSubmit={handleSubmit} 
-          onChange={handleInputChange} 
-          task={task}
+          onNewTask={addNewTask}
         />
         <TaskList 
           tasks={tasks} 

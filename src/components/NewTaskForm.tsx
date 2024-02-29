@@ -1,14 +1,27 @@
-import { NewTaskFormProps } from "../shared/Types";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { NewTaskFormProps, TaskType } from "../shared/Types";
 import './NewTaskForm.css';
 
-const NewTaskForm = ( { onSubmit, onChange, task } : NewTaskFormProps) => {
+const NewTaskForm = ( { onNewTask } : NewTaskFormProps ) => {
+  const [task, setTask] = useState<TaskType>({ name: '' });
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    onNewTask(task);
+    setTask({ name: '' });
+  }
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setTask({ ...task, name: event.target.value });
+  };
+
   return (
     <>
-      <form className="new-task-form" onSubmit={onSubmit}>
+      <form className="new-task-form" onSubmit={handleSubmit}>
           <input
             type="text"
             value={task.name}
-            onChange={onChange}
+            onChange={handleInputChange}
             placeholder="Add a new task..."
           />
           <button type="submit">Add</button>

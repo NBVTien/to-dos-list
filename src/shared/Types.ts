@@ -14,7 +14,5 @@ export interface TaskProps {
 }
 
 export interface NewTaskFormProps {
-    onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    task: TaskType;
+    onNewTask: (task: TaskType) => void;
 }
