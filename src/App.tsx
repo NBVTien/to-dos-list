@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from 'react';
 import { TaskType } from './shared/Types';
 import TaskList from './components/TaskList';
@@ -5,8 +6,8 @@ import NewTaskForm from './components/NewTaskForm';
 import './App.css';
 
 const App = () => {
-  const stringtifyTasks: string | null = sessionStorage.getItem('tasks');
-  const storedTasks: TaskType[] = (stringtifyTasks !== null) ? JSON.parse(stringtifyTasks) : []; 
+  const stringifiedTasks: string | null = sessionStorage.getItem('tasks');
+  const storedTasks: TaskType[] = (stringifiedTasks !== null) ? JSON.parse(stringifiedTasks) : []; 
   const [tasks, setTasks] = useState<TaskType[]>(storedTasks);
   useEffect(() => {
     sessionStorage.setItem('tasks', JSON.stringify(tasks));
@@ -16,10 +17,25 @@ const App = () => {
     setTasks([...tasks, task]);
   };
 
-  const handleDelete = (index: number) => {
-    const newTasks = [...tasks.slice(0, index), ...tasks.slice(index + 1)];
+  const handleDelete = (key: string) => {
+    const newTasks: TaskType[] = tasks.filter(task => task.id !== key);
     setTasks(newTasks);
   };
+
+  const handleClearCompleted = () => {
+    const newTasks: TaskType[] = tasks.filter(task => !task.done);
+    setTasks(newTasks);
+  }
+
+  const handleCheck = (key: string) => { 
+    const newTasks: TaskType[] = tasks.map(task => {
+      if (task.id === key) {
+        return { ...task, done: !task.done };
+      }
+      return task;
+    });
+    setTasks(newTasks);
+  }
 
   return (
     <div className='app'>
@@ -27,9 +43,15 @@ const App = () => {
         <NewTaskForm 
           onNewTask={addNewTask}
         />
+        <button 
+          onClick={handleClearCompleted}
+          className='clear-completed'
+        >
+          Clear completed
+        </button>
         <TaskList 
           tasks={tasks} 
-          onDelete={handleDelete} 
+          onCheck={handleCheck} 
         />
       </div>
     </div>

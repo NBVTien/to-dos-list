@@ -1,18 +1,30 @@
 import { ChangeEvent, FormEvent, useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 import { NewTaskFormProps, TaskType } from "../shared/Types";
 import './NewTaskForm.css';
 
 const NewTaskForm = ( { onNewTask } : NewTaskFormProps ) => {
-  const [task, setTask] = useState<TaskType>({ name: '' });
+  const newTask = () => {
+    return {
+      id: uuidv4(),
+      name: '',
+      done: false
+    };
+  }
+
+  const [task, setTask] = useState<TaskType>(newTask());
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (task.name === '') {
+      return;
+    }
     if (task.name.trim() === '') {
-      setTask({ name: '' });
+      setTask({ ...task, name: '' });
       return;
     }
     onNewTask(task);
-    setTask({ name: '' });
+    setTask(newTask());
   }
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {

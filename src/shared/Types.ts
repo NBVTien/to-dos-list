@@ -1,18 +1,23 @@
 export interface TaskType {
+    id: string;
     name: string;
+    done: boolean;
 }
 
 export interface TaskListProps {
     tasks: TaskType[];
-    onDelete: (index: number) => void;
+    onCheck: (key: string) => void;
 }
 
 export interface TaskProps {
-    key: number;
-    name: string;
-    onDelete: () => void;
+    task: TaskType;
+    onCheck: () => void;
 }
 
 export interface NewTaskFormProps {
     onNewTask: (task: TaskType) => void;
+}
+
+export interface FilterProps {
+    onSelectionChange: (filter: string) => void;
 }

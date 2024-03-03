@@ -2,11 +2,16 @@
 import "./Task.css";
 import { TaskProps } from "../shared/Types";
 
-function Task( {key, name, onDelete} : TaskProps ) {
+function Task( {task, onCheck} : TaskProps ) {
+
   return (
 		<div className="task">
-			<div>{name}</div>
-			<button onClick={onDelete}>Delete</button>
+			<input
+				type="checkbox"
+				checked={task.done}
+				onChange={onCheck}
+			/>
+			<div>{task.name}</div>
 		</div>
   );
 }
