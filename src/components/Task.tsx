@@ -7,11 +7,14 @@ function Task( {task, onCheck} : TaskProps ) {
   return (
 		<div className="task">
 			<input
+				name="taskCheckbox"
+				id={"task-"+task.id}
+				className="task-checkbox"
 				type="checkbox"
 				checked={task.done}
 				onChange={onCheck}
 			/>
-			<div>{task.name}</div>
+			<label htmlFor={"task-"+task.id}>{task.name}</label>
 		</div>
   );
 }

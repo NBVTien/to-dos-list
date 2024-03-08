@@ -80,4 +80,13 @@ textarea:not([rows]) {
   --text-color: #013846;
 
   --font-family: 'Roboto', sans-serif;
+  --font-size: 1.2rem;
+}
+
+/* Global attributes */
+html {
+  font-size: var(--font-size);
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
 }

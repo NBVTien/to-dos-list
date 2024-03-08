@@ -34,14 +34,14 @@ const NewTaskForm = ( { onNewTask } : NewTaskFormProps ) => {
   return (
     <>
       <form className="new-task-form" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={task.name}
-            onChange={handleInputChange}
-            placeholder="Add a new task..."
-          />
-          <button type="submit">Add</button>
-        </form>
+        <input
+          type="text"
+          value={task.name}
+          onChange={handleInputChange}
+          placeholder="Add a new task..."
+        />
+        <button type="submit">Add</button>
+      </form>
     </>
   );
 }

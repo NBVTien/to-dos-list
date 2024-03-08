@@ -1,0 +1,55 @@
+.task-checkbox { 
+  position: absolute; 
+  overflow: hidden; 
+  line-height: normal;
+  clip: rect(0 0 0 0);
+  height: 1px; 
+  width: 1px; 
+  margin: -1px; 
+  padding: 0; 
+  border: 0; 
+}
+
+.task-checkbox + label { 
+  position: relative; 
+  font-size: 16px; 
+  cursor: pointer; 
+  display: inline-flex; 
+  align-items: center; 
+  color: rgb(0, 0, 0); 
+}
+
+.task-checkbox + label::before { 
+  content: " "; 
+  display: inline-block; 
+  vertical-align: middle; 
+  margin-right: 3px; 
+  width: 25px; 
+  height: 25px; 
+  background-color: white; 
+  border-width: 2px; 
+  border-style: solid; 
+  border-color: rgb(0, 0, 0); 
+  border-radius: 6px; 
+  box-shadow: none; 
+}
+
+.task-checkbox:checked + label::after { 
+  content: " "; 
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIiIGQ9Ik0xNzMuODk4IDQzOS40MDRsLTE2Ni40LTE2Ni40Yy05Ljk5Ny05Ljk5Ny05Ljk5Ny0yNi4yMDYgMC0zNi4yMDRsMzYuMjAzLTM2LjIwNGM5Ljk5Ny05Ljk5OCAyNi4yMDctOS45OTggMzYuMjA0IDBMMTkyIDMxMi42OSA0MzIuMDk1IDcyLjU5NmM5Ljk5Ny05Ljk5NyAyNi4yMDctOS45OTcgMzYuMjA0IDBsMzYuMjAzIDM2LjIwNGM5Ljk5NyA5Ljk5NyA5Ljk5NyAyNi4yMDYgMCAzNi4yMDRsLTI5NC40IDI5NC40MDFjLTkuOTk4IDkuOTk3LTI2LjIwNyA5Ljk5Ny0zNi4yMDQtLjAwMXoiLz48L3N2Zz4="); 
+  background-repeat: no-repeat; 
+  background-size: 15px 15px; 
+  background-position: center center; 
+  position: absolute; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  margin-left: 0px; 
+  left: -2px; 
+  top: 0px; 
+  text-align: center; 
+  background-color: transparent; 
+  font-size: 10px; 
+  height: 29px; 
+  width: 29px;
+}
