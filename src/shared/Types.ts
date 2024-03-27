@@ -20,7 +20,7 @@ export interface NewTaskFormProps {
 }
 
 export interface FilterProps {
-    onSelectionChange: (filter: (task: TaskType) => boolean) => void;
+    onSelectionChange: (filter: () => (task: TaskType) => boolean) => void;
     onClearCompleted: () => void;
 }
 

@@ -11,7 +11,7 @@ const Filter = ({ onSelectionChange, onClearCompleted } : FilterProps ) => {
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedValue(event.target.value);
     onSelectionChange(
-      (task) => {
+      () => (task) => {
         if (event.target.value === 'completed') {
           return task.done;
         }

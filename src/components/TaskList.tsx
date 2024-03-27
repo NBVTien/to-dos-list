@@ -7,7 +7,7 @@ import Filter from "./Filter";
 
 const TaskList = ( {tasks, onCheck, onClearCompleted} : TaskListProps) => {
   const [filter, setFilter] = useState<(task: TaskType) => boolean>(
-    () => true
+    () => () => true
   );
 
   const filteredTasks : TaskType[] = tasks.filter(filter);
