@@ -1,11 +1,15 @@
 .filter {
   display: flex;
   flex-direction: row;
+  gap: 10px;
+
+  & > input {
+    width: 100%;
+  }
 }
 
 .dropdown {
   background-color: var(--accent-color);
   color: var(--background-color);
-  margin-right: 10px;
   border-radius: 5px;
 }

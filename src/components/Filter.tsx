@@ -2,25 +2,31 @@ import { useState } from 'react';
 
 import ClearCompletedButton from './ClearCompletedButton';
 
-import { FilterProps } from '../shared/Types';
+import { FilterProps, TaskType } from '../shared/Types';
 import "./Filter.css"
 
 const Filter = ({ onSelectionChange, onClearCompleted } : FilterProps ) => {
   const [selectedValue, setSelectedValue] = useState<string>('all');
+  const [searchValue, setSearchValue] = useState<string>('');
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedValue(event.target.value);
-    onSelectionChange(
-      () => (task) => {
-        if (event.target.value === 'completed') {
-          return task.done;
-        }
-        if (event.target.value === 'active') {
-          return !task.done;
-        }
-        return true;
-      }
-    );
+    onSelectionChange(() => (task: TaskType) => {
+      const matched: boolean = task.name.toLowerCase().includes(searchValue.toLowerCase());
+      const option: boolean = (event.target.value === 'completed' && task.done) || (event.target.value === 'active' && !task.done) || event.target.value === 'all';
+  
+      return matched && option;
+    });
+  }
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
+    onSelectionChange(() => (task: TaskType) => {
+      const matched: boolean = task.name.toLowerCase().includes(event.target.value.toLowerCase());
+      const option: boolean = (selectedValue === 'completed' && task.done) || (selectedValue === 'active' && !task.done) || selectedValue === 'all';
+  
+      return matched && option;
+    });
   }
 
   return (
@@ -30,6 +36,12 @@ const Filter = ({ onSelectionChange, onClearCompleted } : FilterProps ) => {
         <option value="active">Active</option>
         <option value="completed">Completed</option>
       </select>
+      <input
+        type="text"
+        value={searchValue}
+        onChange={handleSearch}
+        placeholder="Search..."
+      />
       <ClearCompletedButton 
         onClearCompleted={onClearCompleted}
       />
