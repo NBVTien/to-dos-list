@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import "./Task.css";
 import { TaskProps } from "../shared/Types";
+
+import "./Task.css";
 
 function Task( {task, onCheck} : TaskProps ) {
 

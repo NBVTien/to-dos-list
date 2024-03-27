@@ -1,27 +1,23 @@
 import { useState } from "react";
+
 import { TaskListProps, TaskType } from "../shared/Types";
+
 import Task from "./Task";
 import Filter from "./Filter";
 
-const TaskList = ( {tasks, onCheck} : TaskListProps) => {
-  const [filter, setFilter] = useState<string>('all');
+const TaskList = ( {tasks, onCheck, onClearCompleted} : TaskListProps) => {
+  const [filter, setFilter] = useState<(task: TaskType) => boolean>(
+    () => true
+  );
 
-  const filterTasks = (tasks: TaskType[], filter: string) => {
-    switch (filter) {
-      case 'active':
-        return tasks.filter(task => !task.done);
-      case 'completed':
-        return tasks.filter(task => task.done);
-      default:
-        return tasks;
-    }
-  }
-
-  const filteredTasks : TaskType[] = filterTasks(tasks, filter);
+  const filteredTasks : TaskType[] = tasks.filter(filter);
   
   return (
     <>
-      <Filter onSelectionChange={setFilter}/>
+      <Filter 
+        onSelectionChange={setFilter}
+        onClearCompleted={onClearCompleted}
+      />
       {(filteredTasks.length === 0) ? (
         <p>There is no tasks.</p>
       ) : (

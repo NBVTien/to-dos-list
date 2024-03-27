@@ -1,0 +1,11 @@
+.filter {
+  display: flex;
+  flex-direction: row;
+}
+
+.dropdown {
+  background-color: var(--accent-color);
+  color: var(--background-color);
+  margin-right: 10px;
+  border-radius: 5px;
+}

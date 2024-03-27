@@ -1,3 +1,8 @@
+.task {
+  display: flex;
+  padding: 10px 20px;
+}
+
 .task-checkbox { 
   position: absolute; 
   overflow: hidden; 
@@ -12,7 +17,7 @@
 
 .task-checkbox + label { 
   position: relative; 
-  font-size: 16px; 
+  font-size: 20px; 
   cursor: pointer; 
   display: inline-flex; 
   align-items: center; 
@@ -23,7 +28,7 @@
   content: " "; 
   display: inline-block; 
   vertical-align: middle; 
-  margin-right: 3px; 
+  margin-right: 10px; 
   width: 25px; 
   height: 25px; 
   background-color: white; 

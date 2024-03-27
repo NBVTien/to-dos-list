@@ -7,6 +7,7 @@ export interface TaskType {
 export interface TaskListProps {
     tasks: TaskType[];
     onCheck: (key: string) => void;
+    onClearCompleted: () => void;
 }
 
 export interface TaskProps {
@@ -19,5 +20,10 @@ export interface NewTaskFormProps {
 }
 
 export interface FilterProps {
-    onSelectionChange: (filter: string) => void;
+    onSelectionChange: (filter: (task: TaskType) => boolean) => void;
+    onClearCompleted: () => void;
+}
+
+export interface ClearCompletedButtonProps {
+    onClearCompleted: () => void;
 }

@@ -17,11 +17,6 @@ const App = () => {
     setTasks([...tasks, task]);
   };
 
-  const handleDelete = (key: string) => {
-    const newTasks: TaskType[] = tasks.filter(task => task.id !== key);
-    setTasks(newTasks);
-  };
-
   const handleClearCompleted = () => {
     const newTasks: TaskType[] = tasks.filter(task => !task.done);
     setTasks(newTasks);
@@ -43,15 +38,10 @@ const App = () => {
         <NewTaskForm 
           onNewTask={addNewTask}
         />
-        <button 
-          onClick={handleClearCompleted}
-          className='clear-completed'
-        >
-          Clear completed
-        </button>
         <TaskList 
           tasks={tasks} 
           onCheck={handleCheck} 
+          onClearCompleted={handleClearCompleted}
         />
       </div>
     </div>

@@ -1,6 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
+
 import { NewTaskFormProps, TaskType } from "../shared/Types";
+
 import './NewTaskForm.css';
 
 const NewTaskForm = ( { onNewTask } : NewTaskFormProps ) => {
