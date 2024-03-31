@@ -5,7 +5,7 @@ import { TaskListProps, TaskType } from "../shared/Types";
 import Task from "./Task";
 import Filter from "./Filter";
 
-const TaskList = ( {tasks, onCheck, onClearCompleted} : TaskListProps) => {
+const TaskList = ( {tasks, onCheck, onClearCompleted, onDelete} : TaskListProps ) => {
   const [filter, setFilter] = useState<(task: TaskType) => boolean>(
     () => () => true
   );
@@ -26,6 +26,7 @@ const TaskList = ( {tasks, onCheck, onClearCompleted} : TaskListProps) => {
             key={task.id}
             task={task} 
             onCheck={() => onCheck(task.id)} 
+            onDelete={() => onDelete(task.id)}
           />
         ))
       )}

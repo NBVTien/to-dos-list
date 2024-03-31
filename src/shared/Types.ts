@@ -8,11 +8,13 @@ export interface TaskListProps {
     tasks: TaskType[];
     onCheck: (key: string) => void;
     onClearCompleted: () => void;
+    onDelete: (key: string) => void;
 }
 
 export interface TaskProps {
     task: TaskType;
     onCheck: () => void;
+    onDelete: () => void;
 }
 
 export interface NewTaskFormProps {

@@ -3,7 +3,7 @@ import { TaskProps } from "../shared/Types";
 
 import "./Task.css";
 
-function Task( {task, onCheck} : TaskProps ) {
+function Task( {task, onCheck, onDelete} : TaskProps ) {
 
   return (
 		<div className="task">
@@ -16,6 +16,12 @@ function Task( {task, onCheck} : TaskProps ) {
 				onChange={onCheck}
 			/>
 			<label htmlFor={"task-"+task.id}>{task.name}</label>
+			<button 
+				className="task-delete"
+				onClick={onDelete}
+			>
+				<img src="delete.svg" alt="Delete" /> 
+			</button> 
 		</div>
   );
 }

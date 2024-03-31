@@ -32,6 +32,11 @@ const App = () => {
     setTasks(newTasks);
   }
 
+  const handleDelete = (key: string) => {
+    const newTasks: TaskType[] = tasks.filter(task => task.id !== key);
+    setTasks(newTasks);
+  }
+
   return (
     <div className='app'>
       <div className='wrapper'>
@@ -42,6 +47,7 @@ const App = () => {
           tasks={tasks} 
           onCheck={handleCheck} 
           onClearCompleted={handleClearCompleted}
+          onDelete={handleDelete}
         />
       </div>
     </div>
