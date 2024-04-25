@@ -36,13 +36,16 @@ const NewTaskForm = ( { onNewTask } : NewTaskFormProps ) => {
   return (
     <>
       <form className="new-task-form" onSubmit={handleSubmit}>
+        <div className="fake-checkbox"></div> 
         <input
           type="text"
           value={task.name}
           onChange={handleInputChange}
           placeholder="Add a new task..."
         />
-        <button type="submit">Add</button>
+        <button type="submit">
+          <img src="add.svg" alt="Add" />
+        </button>
       </form>
     </>
   );

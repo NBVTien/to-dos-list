@@ -1,15 +1,27 @@
 .new-task-form {
+  width: 100%;
+  padding: 10px 10px;
+  margin: 10px 0;
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 6px;
   flex-direction: row;
 
   & > input {
-    padding: 10px;
-    margin: 10px;
-    width: 100%;
-
-    &::placeholder {
-      color: var(--text-color);
-    }
+    all: unset;
+    position: relative; 
+    width: calc(100% - 40px - 25px - 10px); /* 100% - add button width - delete button width - margin between elements */ /* TODO: this calculation is too hard code */
+    margin-left: 10px;
+    font-size: 20px; 
+    cursor: pointer; 
+    display: inline-flex; 
+    align-items: center; 
+    text-align: justify;
+    color: rgb(0, 0, 0); 
+    word-wrap: break-word;
+    word-break: break-word;
 
     &:focus {
       outline: none;
@@ -17,13 +29,34 @@
   }
 
   & > button {
-    background-color: var(--accent-color);
-    color: var(--background-color);
-    width: fit-content;
-    padding: 0px 20px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    all: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto; 
+    font-size: 20px; 
+    cursor: pointer; 
+    width: 40px;
+    height: 40px;
+
+    & > img {
+      width: 25px;
+      height: 25px;
+    }
   }
+}
+
+.fake-checkbox {
+  content: " "; 
+  display: inline-block; 
+  vertical-align: middle; 
+  min-width: 25px;
+  width: 25px; 
+  height: 25px; 
+  background-color: white; 
+  border-width: 2px; 
+  border-style: solid; 
+  border-color: rgb(0, 0, 0); 
+  border-radius: 6px; 
+  box-shadow: none; 
 }
