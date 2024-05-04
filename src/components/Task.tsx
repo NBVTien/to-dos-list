@@ -9,14 +9,15 @@ function Task( {task, onCheck, onDelete} : TaskProps ) {
 		<div className="task">
 			<input
 				name="taskCheckbox"
-				id={"task-"+task.id}
+				id={task.id}
 				className="task-checkbox"
 				type="checkbox"
 				checked={task.done}
 				onChange={onCheck}
 			/>
-			<label htmlFor={"task-"+task.id}>{task.name}</label>
+			<label htmlFor={task.id}>{task.name}</label>
 			<button 
+				type="button"
 				className="task-delete"
 				onClick={onDelete}
 			>

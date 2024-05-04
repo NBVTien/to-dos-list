@@ -6,31 +6,32 @@ import { NewTaskFormProps, TaskType } from "../shared/Types";
 import './NewTaskForm.css';
 
 const NewTaskForm = ( { onNewTask } : NewTaskFormProps ) => {
-  const newTask = () => {
+  const newTask = (name: string) => {
     return {
       id: uuidv4(),
-      name: '',
+      name: name,
       done: false
     };
   }
 
-  const [task, setTask] = useState<TaskType>(newTask());
+  const [taskName, setTaskName] = useState<string>('');
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const task: TaskType = newTask(taskName);
     if (task.name === '') {
       return;
     }
     if (task.name.trim() === '') {
-      setTask({ ...task, name: '' });
+      setTaskName('');
       return;
     }
     onNewTask(task);
-    setTask(newTask());
+    setTaskName('');
   }
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setTask({ ...task, name: event.target.value });
+    setTaskName(event.target.value);
   };
 
   return (
@@ -39,7 +40,7 @@ const NewTaskForm = ( { onNewTask } : NewTaskFormProps ) => {
         <div className="fake-checkbox"></div> 
         <input
           type="text"
-          value={task.name}
+          value={taskName}
           onChange={handleInputChange}
           placeholder="Add a new task..."
         />

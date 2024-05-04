@@ -22,7 +22,7 @@
 
 .task-checkbox + label { 
   position: relative; 
-  max-width: calc(100% - 40px - 25px); /* 100% - delete button width - label::before width */
+  max-width: calc(100% - 40px); /* 100% - delete button width */
   font-size: 20px; 
   cursor: pointer; 
   display: inline-flex; 
@@ -69,14 +69,16 @@
 
 .task-delete { 
   all: unset;
+  cursor: pointer; 
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-left: auto; 
   font-size: 20px; 
-  cursor: pointer; 
 
   & > img {
-    min-width: 40px;
-    min-height: 40px;
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
   }
 }
