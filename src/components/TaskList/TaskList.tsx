@@ -1,9 +1,9 @@
-import { TaskListProps } from "../shared/Types";
+import { TaskListProps } from "../../shared/Types";
 
-import Task from "./Task";
+import Task from "../Task/Task";
 
 const TaskList = ( {tasks, onCheck, onDelete} : TaskListProps ) => {
-
+  // TODO: Add a useTransition hook somewhere to handle the rendering of the tasks.
   return (
     <>
       {(tasks.length === 0) ? (

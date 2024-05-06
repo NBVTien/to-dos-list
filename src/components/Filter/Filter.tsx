@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
-import ClearCompletedButton from './ClearCompletedButton';
-import { FilterProps, TaskType } from '../shared/Types';
+import ClearCompletedButton from '../ClearCompletedButton/ClearCompletedButton';
+import { FilterProps, TaskType } from '../../shared/Types';
 import "./Filter.css"
 
 const Filter = ({onSelectionChange, onClearCompleted} : FilterProps ) => {

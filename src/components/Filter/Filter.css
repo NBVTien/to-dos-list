@@ -1,0 +1,15 @@
+.filter {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  & > input {
+    width: 100%;
+  }
+}
+
+.dropdown {
+  background-color: var(--accent-color);
+  color: var(--background-color);
+  border-radius: 5px;
+}

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { TaskProps } from "../shared/Types";
+import { TaskProps } from "../../shared/Types";
 
 import "./Task.css";
 

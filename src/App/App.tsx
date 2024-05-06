@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useCallback, useEffect, useState } from 'react';
-import { TaskType } from './shared/Types';
-import Filter from './components/Filter';
-import TaskList from './components/TaskList';
-import NewTaskForm from './components/NewTaskForm';
+import { TaskType } from '../shared/Types';
+import Filter from '../components/Filter/Filter';
+import TaskList from '../components/TaskList/TaskList';
+import NewTaskForm from '../components/NewTaskForm/NewTaskForm';
 import './App.css';
 
 const App = () => {
