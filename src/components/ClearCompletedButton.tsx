@@ -2,7 +2,7 @@ import { ClearCompletedButtonProps } from "../shared/Types";
 
 import './ClearCompletedButton.css';
 
-const ClearCompletedButton = ({ onClearCompleted }: ClearCompletedButtonProps) => {
+const ClearCompletedButton = ({onClearCompleted}: ClearCompletedButtonProps) => {
   return (
     <button 
       onClick={onClearCompleted}

@@ -1,11 +1,11 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 
 import { NewTaskFormProps, TaskType } from "../shared/Types";
 
 import './NewTaskForm.css';
 
-const NewTaskForm = ( { onNewTask } : NewTaskFormProps ) => {
+const NewTaskForm = ({onNewTask} : NewTaskFormProps) => {
   const newTask = (name: string) => {
     return {
       id: uuidv4(),
@@ -30,9 +30,9 @@ const NewTaskForm = ( { onNewTask } : NewTaskFormProps ) => {
     setTaskName('');
   }
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setTaskName(event.target.value);
-  };
+  }, []);
 
   return (
     <>

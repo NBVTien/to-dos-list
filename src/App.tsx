@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { TaskType } from './shared/Types';
 import Filter from './components/Filter';
 import TaskList from './components/TaskList';
@@ -19,16 +19,16 @@ const App = () => {
     sessionStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
 
-  const addNewTask = (task: TaskType) => {
+  const addNewTask = useCallback((task: TaskType) => {
     setTasks([...tasks, task]);
-  };
+  }, [tasks]);
 
-  const handleClearCompleted = () => {
+  const handleClearCompleted = useCallback(() => {
     const newTasks: TaskType[] = tasks.filter(task => !task.done);
     setTasks(newTasks);
-  }
+  }, [tasks]);
 
-  const handleCheck = (key: string) => { 
+  const handleCheck = useCallback((key: string) => { 
     const newTasks: TaskType[] = tasks.map(task => {
       if (task.id === key) {
         return { ...task, done: !task.done };
@@ -36,12 +36,12 @@ const App = () => {
       return task;
     });
     setTasks(newTasks);
-  }
+  }, [tasks]);
 
-  const handleDelete = (key: string) => {
+  const handleDelete = useCallback((key: string) => {
     const newTasks: TaskType[] = tasks.filter(task => task.id !== key);
     setTasks(newTasks);
-  }
+  }, [tasks]);
 
   const filteredTasks : TaskType[] = tasks.filter(filter);
   

@@ -1,15 +1,13 @@
-import { useState } from 'react';
-
+import { useState, useCallback } from 'react';
 import ClearCompletedButton from './ClearCompletedButton';
-
 import { FilterProps, TaskType } from '../shared/Types';
 import "./Filter.css"
 
-const Filter = ({ onSelectionChange, onClearCompleted } : FilterProps ) => {
+const Filter = ({onSelectionChange, onClearCompleted} : FilterProps ) => {
   const [selectedValue, setSelectedValue] = useState<string>('all');
   const [searchValue, setSearchValue] = useState<string>('');
 
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = useCallback((event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedValue(event.target.value);
     onSelectionChange(() => (task: TaskType) => {
       const matched: boolean = task.name.toLowerCase().includes(searchValue.toLowerCase());
@@ -17,9 +15,9 @@ const Filter = ({ onSelectionChange, onClearCompleted } : FilterProps ) => {
   
       return matched && option;
     });
-  }
+  }, [onSelectionChange, searchValue]);
 
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearch = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
     onSelectionChange(() => (task: TaskType) => {
       const matched: boolean = task.name.toLowerCase().includes(event.target.value.toLowerCase());
@@ -27,7 +25,7 @@ const Filter = ({ onSelectionChange, onClearCompleted } : FilterProps ) => {
   
       return matched && option;
     });
-  }
+  }, [onSelectionChange, selectedValue]);
 
   return (
     <div className="filter">
